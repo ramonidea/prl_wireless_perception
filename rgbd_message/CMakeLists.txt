@@ -40,7 +40,7 @@ link_directories(
 
 
 # define executable using MyMessage1 etc.
-add_executable(message_compressor src/compress.py)
-add_executable(message_decompressor src/decompress.py)
+#add_executable(message_compressor src/compress.py)
+#add_executable(message_decompressor src/decompress.py)
 #add_dependencies(message_compressor ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 #add_dependencies(message_decompressor ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
