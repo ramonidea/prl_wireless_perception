@@ -13,33 +13,37 @@ RGB_COMPRESS = 75
 
 def callback(rgb, dep):
     global pub, bridge, RGB_COMPRESS
-    rgbd_msg = rgbd()
-    rgbd_msg.header = dep.header
 
-    try:
-        rgb_data = bridge.imgmsg_to_cv2(rgb , "rgb8")
-    except CvBridgeError as e:
-        print(e)
-    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), RGB_COMPRESS]
-    ret, rgb_compressed = cv2.imencode('.jpg', rgb_data, encode_param)
-    rgb_compressed = rgb_compressed.tobytes()
+    if pub.get_num_connections()> 0:
 
-    try:
-        dep_data = bridge.imgmsg_to_cv2(dep , "16UC1") 
-    except CvBridgeError as e:
-        print(e)
-    #Trim down to 1d Array
-    dep_compressed = zlib.compress(dep_data)
+        rgbd_msg = rgbd()
+        rgbd_msg.header = dep.header
 
-    final_compressed = rgb_compressed + b'ColDep'+ dep_compressed
+        try:
+            rgb_data = bridge.imgmsg_to_cv2(rgb , "rgb8")
+        except CvBridgeError as e:
+            print(e)
+        encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), RGB_COMPRESS]
+        ret, rgb_compressed = cv2.imencode('.jpg', rgb_data, encode_param)
+        rgb_compressed = rgb_compressed.tobytes()
 
-    rgbd_msg.data = final_compressed
+        try:
+            dep_data = bridge.imgmsg_to_cv2(dep , "16UC1") 
+        except CvBridgeError as e:
+            print(e)
+        #Trim down to 1d Array
+        dep_compressed = zlib.compress(dep_data)
 
-    pub.publish(rgbd_msg)
+        final_compressed = rgb_compressed + b'ColDep'+ dep_compressed
+
+        rgbd_msg.data = final_compressed
+
+        pub.publish(rgbd_msg)
 
 
 
 if __name__ == '__main__':
+    rospy.loginfo("/camera/rgbd","Start compressing RGb and Depth to RGBD");
     bridge = CvBridge()
 
     rgb_sub = message_filters.Subscriber('/camera/color/image_raw', Image)
