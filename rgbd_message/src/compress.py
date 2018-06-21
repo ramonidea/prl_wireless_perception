@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import message_filters
 from sensor_msgs.msg import Image
-from rgbd_compress.msg import rgbd
+from rgbd_message.msg import rgbd
 import rospy
 import zlib
 import numpy as np
