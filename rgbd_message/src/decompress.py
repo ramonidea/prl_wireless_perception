@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import message_filters
 import sensor_msgs.msg 
-from rgbd_compress.msg import rgbd
+from rgbd_message.msg import rgbd
 import rospy
 import zlib
 import numpy as np
