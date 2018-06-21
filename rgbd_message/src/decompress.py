@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import message_filters
 import sensor_msgs.msg 
 from rgbd_compress.msg import rgbd
