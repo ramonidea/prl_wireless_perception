@@ -6,9 +6,9 @@ wstool init src
 catkin init
 catkin config --extend /opt/ros/kinetic
 cd src
-cp ../../image_common ./
-cp ../../immage_geometry ./
-cp ../../image_pipeline ./
-cp ../../image_transport_plugins ./
+cp -a ../../image_common ./
+cp -a ../../image_geometry ./
+cp -a ../../image_pipeline ./
+cp -a ../../image_transport_plugins ./
 cd ../
 catkin build
