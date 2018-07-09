@@ -6,7 +6,6 @@ mkdir Realsense && cd Realsense
 git clone https://github.com/IntelRealSense/librealsense.git
 cd librealsense
 sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
-sudo update-grub && sudo reboot
 echo "=============!Warning!============="
 echo "-----------------------------------"
 echo "Please unplug all realsense camera!!!"
