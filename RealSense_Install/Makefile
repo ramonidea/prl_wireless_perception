@@ -1,6 +1,8 @@
 .PHONY:  help
 help: 
-		echo "Possible make targets:"
+		@echo "Possible make targets:"
+		@echo "realsense: install Librealsense"
+		
 
 .PHONY: realsense
 realsense:

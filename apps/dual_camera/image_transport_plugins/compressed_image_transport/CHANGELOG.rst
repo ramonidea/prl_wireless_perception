@@ -1,6 +1,6 @@
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Changelog for package theora_image_transport
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changelog for package compressed_image_transport
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1.9.5 (2016-10-03)
 ------------------
@@ -21,34 +21,33 @@ Changelog for package theora_image_transport
 1.9.3 (2016-01-17)
 ------------------
 * remove useless tf dependencies
-* Contributors: Vincent Rabaud
+* Using cfg-defined constants
+* Changed flag name, and corrected typo in flag use.
+* using IMREAD flags.
+* Updated for indigo-devel
+* Contributors: Cedric Pradalier, Vincent Rabaud
 
 1.9.2 (2015-04-25)
 ------------------
 * get code to compile with OpenCV3
+* avoid yet another image copy
+* avoid copying data if it can be shared
 * Contributors: Vincent Rabaud
 
 1.9.1 (2014-07-18)
 ------------------
-* Some cleanup in package.xml and CMakeLists.txt
-  - builds broke sporadically (I think because of the missing *_gencpp in
-  add_dependencies) with missing Packet.h file.
-  - I’m no catkin expert, but these changes make catkin_lint happy (no
-  more errors at least).
-* Contributors: Nikolaus Demmel
 
 1.9.0 (2014-05-16)
 ------------------
-* remove __connection_header for indigo see http://github.com/ros-perception/image_transport_plugins.git
-* Contributors: Kei Okada
 
 1.8.21 (2013-06-27)
 -------------------
+* maintainer: david gossow
+* Contributors: David Gossow
 
 1.8.20 (2013-03-18)
 -------------------
 * 1.8.19 -> 1.8.20
-* fixing missing theoraenc and theoradec library links
 * Contributors: Julius Kammerl
 
 1.8.19 (2013-02-24)
@@ -65,7 +64,6 @@ Changelog for package theora_image_transport
 1.8.17 (2013-01-18)
 -------------------
 * 1.8.16 -> 1.8.17
-* fixed color conversion bug in theora_image_transport
 * Contributors: Julius Kammerl
 
 1.8.16 (2013-01-17)
@@ -76,9 +74,13 @@ Changelog for package theora_image_transport
 
 1.8.15 (2012-12-28 20:11)
 -------------------------
+* fix typo
+* Contributors: Vincent Rabaud
 
 1.8.14 (2012-12-28 20:02)
 -------------------------
+* fix the bad xml naming
+* Contributors: Vincent Rabaud
 
 1.8.13 (2012-12-28 19:06)
 -------------------------
@@ -110,8 +112,6 @@ Changelog for package theora_image_transport
 
 1.8.8 (2012-12-17)
 ------------------
-* more message generation related catkin changes
-* adding message_runtime deb to CMakeLists.txt
 * adding build_deb on message_generation & mrun_deb on message_runtime
 * Updated package.xml for new buildtool_depend tag for catkin requirement
 * Contributors: Julius Kammerl, mirzashah
@@ -131,40 +131,24 @@ Changelog for package theora_image_transport
 * adding missing build debs
 * added class_loader_hide_library_symbols macros to CMakeList
 * switching to 1.8.5
+* fixing compressed color format to comply with opencv api
 * Contributors: Julius Kammerl
 
 1.8.4 (2012-11-30)
 ------------------
 * switching to version 1.8.4
-* catkinizing theora_image_transport
 * adding plugin.xml exports for pluginlib
 * catkinizing theora_image_transport
 * github migration from code.ros.org (r40053)
-* theora_image_transport: Restored build of ogg_saver, though it really needs more work to be robust.
-* theora_image_transport: Removed debug output.
-* theora_image_transport: Renamed compressed_plugins.xml to theora_plugins.xml.
-* theora_image_transport: Added migration rule for new Packet message.
 * image_transport_plugins: Updated manifests to have better summaries, correct URLs.
-* theora: Fixed export flags of libtheora. No longer need hack in theora_image_transport's CMakeLists. Temporarily disabled building ogg_saver.
-* theora_image_transport: Copy connection header into the output Image.
-* theora_image_transport: Publisher sends new headers if image size changes. Better error handling in publisher. Always turn off latching.
-* theora_image_transport: Subscriber ignores delta frames until it gets a keyframe. Gets rid of junk frames at the beginning.
-* theora_image_transport: Properly clear everything before receiving new headers, which now works without error on the subscriber side.
-* theora_image_transport: Better error handling. Support for receiving new headers in subscriber. Handle duplicate frames correctly. Fixed a couple memory leaks.
-* theora_image_transport: Force queue_size to be big enough for the headers on both ends. Got rid of sleeps after publishing header packets. More code cleanup.
-* theora_image_transport: Added ROS header to Packet msg, fixing `#3882 <https://github.com/ros-perception/image_transport_plugins/issues/3882>`_. Fixed reception of comment header and now properly detect when all headers received.
-* theora_image_transport: Pull out original (non-padded) region in subscriber.
-* theora_image_transport: Cleaned up encoding/decoding to make good use of existing OpenCV functions. Partially fixed `#3082 <https://github.com/ros-perception/image_transport_plugins/issues/3082>`_, poor handling of oddly-sized images.
-* theora_image_transport: Cleanup of TheoraPublisher.
+* compressed_image_transport: Some todos.
+* compressed_image_transport: Copy connection header to output Image, `#4250 <https://github.com/ros-perception/image_transport_plugins/issues/4250>`_.
 * Added Ubuntu platform tags to manifest
-* Adding ogg_saver node to dump a theora stream to a .ogg file playable in VLC, mplayer, etc
-* Fixing bug (typo) where theora_publisher always set target bitrate to 1.  I'm surprised it was working at all.
-* Remove use of deprecated rosbuild macros
+* compressed_image_transport: Fixed swapping of R & B channels in data field.
+* compressed_image_transport: Fixed bug in lookup of format parameter.
+* getParam -> getParamCached
 * Switch to opencv2
-* Ooops, segfault
-* Hopefully fixed a theora_subscriber bug, Patrick will test.
-* theora_image_transport: Override getTransportName().
-* Updating theora_image_transport to work with the latest image_transport API
-* Removed explicit library prefix and suffix
+* compressed_image_transport: Renamed parameters, which are now searched up the parameter tree.
+* compressed_image_transport: Updated for compatibility with post-0.1 image_transport.
 * image_transport_plugins: Initial stack check-in. Includes theora_image_transport, compressed_image_transport and libtheora. Currently depends on opencv, but may excise this in the future.
-* Contributors: Julius Kammerl, ethan, gerkey, jamesb, mihelich, pmihelich, wheeler
+* Contributors: Julius Kammerl, gerkey, jamesb, mihelich, pmihelich

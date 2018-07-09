@@ -2,10 +2,23 @@
 
 #Use in Ubuntu 16 LTS
 cd ~
+curl -OL https://cmake.org/files/v3.12/cmake-3.12.0-rc3-Linux-x86_64.tar.gz
+tar -xvf cmake-3.12.0-rc3-Linux-x86_64.tar.gz
+cd cmake-3.12.0-rc3-Linux-x86_64
+sudo cp -r bin /usr/
+sudo cp -r share /usr/
+sudo cp -r doc /usr/share/
+sudo cp -r man /usr/share/
+cd ../
+sudo rm -r cmake-3.12.0-rc3-Linux-x86_64
+sudo rm cmake-3.12.0-rc3-Linux-x86_64.tar.gz
 mkdir Realsense && cd Realsense
 git clone https://github.com/IntelRealSense/librealsense.git
 cd librealsense
 sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:george-edison55/cmake-3.x
+sudo apt-get update
 echo "=============!Warning!============="
 echo "-----------------------------------"
 echo "Please unplug all realsense camera!!!"
