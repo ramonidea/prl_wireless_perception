@@ -65,6 +65,15 @@ sudo pip3 install -r requirements.txt
 # Install Mode:  (substitute for Develop Mode commands)
 sudo python3 setup.py install
 
+# Install TensorboardX
+pip3 install tensorboardX
+
+#Install Torchvision
+git clone https://github.com/pytorch/vision
+cd vision
+sudo python3 setup.py install
+
+
 # Verify CUDA (from python interactive terminal)
 # import torch
 # print(torch.__version__)
