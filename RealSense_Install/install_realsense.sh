@@ -12,9 +12,11 @@ sudo cp -r man /usr/share/
 cd ../
 sudo rm -r cmake-3.12.0-rc3-Linux-x86_64
 sudo rm cmake-3.12.0-rc3-Linux-x86_64.tar.gz
+
 mkdir Realsense && cd Realsense
 git clone https://github.com/IntelRealSense/librealsense.git
 cd librealsense
+git checkout tags/v2.10.0
 sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
 sudo apt-get install software-properties-common
 sudo add-apt-repository ppa:george-edison55/cmake-3.x
@@ -30,8 +32,7 @@ sudo udevadm control --reload-rules && udevadm trigger
 sh ./scripts/patch-realsense-ubuntu-lts.sh
 cd ~/Realsense/librealsense/
 mkdir build && cd build
-cmake ../ -DBUILD_EXAMPLES=true
-cmake ../ -DBUILD_PYTHON_BINDINGS=bool:true
+cmake ../ -DBUILD_EXAMPLES=true -DBUILD_PYTHON_BINDINGS=bool:true
 sudo make uninstall && make clean && make -j4 && sudo make install
 
 
