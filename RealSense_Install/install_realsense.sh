@@ -54,5 +54,6 @@ catkin_make install
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
+sudo apt-get install ros-kinetic-rgbd-launch ros-kinetic-image-transport-plugins
 
 
